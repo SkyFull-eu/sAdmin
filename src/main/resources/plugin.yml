@@ -1,0 +1,12 @@
+name: sAdmin
+version: ${project.version}
+main: me.GGGEDR.sAdmin.Main
+api-version: 1.16
+authors: [GGGEDR]
+depend: [PlaceholderAPI]
+commands:
+  staffchat:
+  admin:
+  udrzba:
+  odmena:
+  sumo:
