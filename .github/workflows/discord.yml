@@ -16,12 +16,12 @@ jobs:
         # Discord webhook
         webhook_id: '808656216573607946'  # Has to be provided as a string
         webhook_token: ${{ secrets.webhook_token }}
-
         # Optional arguments for PR-related events
         # Note: There's no harm in including these lines for non-PR
         # events, as non-existing paths in objects will evaluate to
         # `null` silently and the github status embed action will
         # treat them as absent.
+        status: ${{ github.event.workflow_run.conclusion }}
         pr_author_login: ${{ github.event.pull_request.user.login }}
         pr_number: ${{ github.event.pull_request.number }}
         pr_title: ${{ github.event.pull_request.title }}
