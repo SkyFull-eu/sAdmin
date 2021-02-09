@@ -48,6 +48,7 @@ class Main : JavaPlugin() {
         Bukkit.getPluginManager().registerEvents(MinerListener(), this)
         Bukkit.getPluginManager().registerEvents(Sumo(), this)
         n = hotbarSuradnice().startBucketSuradniceRunnable()
+        MobTrapka.start()
     }
 
     override fun onDisable() {
