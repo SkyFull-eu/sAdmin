@@ -9,6 +9,7 @@ import me.GGGEDR.sAdmin.Listeners.udrzba.join
 import me.GGGEDR.sAdmin.commands.admin
 import me.GGGEDR.sAdmin.commands.event.sumoEvent
 import me.GGGEDR.sAdmin.commands.member.odmena
+import me.GGGEDR.sAdmin.commands.member.uuid
 import me.GGGEDR.sAdmin.commands.staffchat
 import me.GGGEDR.sAdmin.commands.udrzba
 import org.bukkit.Bukkit
@@ -40,6 +41,7 @@ class Main : JavaPlugin() {
         getCommand("admin")?.setExecutor(admin)
         getCommand("udrzba")?.setExecutor(udrzba)
         getCommand("odmena")?.setExecutor(odmena)
+        getCommand("uuid")?.setExecutor(uuid)
         getCommand("sumo")?.setExecutor(sumoEvent())
         Bukkit.getPluginManager().registerEvents(MenuFunctionListener(), this)
         Bukkit.getPluginManager().registerEvents(join(), this)
