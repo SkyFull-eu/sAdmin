@@ -12,20 +12,22 @@ import me.GGGEDR.sAdmin.commands.member.odmena
 import me.GGGEDR.sAdmin.commands.member.uuid
 import me.GGGEDR.sAdmin.commands.staffchat
 import me.GGGEDR.sAdmin.commands.udrzba
+import me.GGGEDR.sAdmin.webapi.Apier
+import me.realized.tokenmanager.api.TokenManager
+import net.milkbowl.vault.economy.Economy
 import org.bukkit.Bukkit
 import org.bukkit.entity.Player
 import org.bukkit.plugin.java.JavaPlugin
 import org.ipvp.canvas.MenuFunctionListener
 
 
-
-
 class Main : JavaPlugin() {
 
     companion object {
         var instance: Main? = null
-            private set
         var udrzba_status: Boolean = false
+        var econ: Economy? = null
+        var tm: TokenManager? = null
     }
 
     var n = 0;
@@ -37,6 +39,8 @@ class Main : JavaPlugin() {
         dataFolder.mkdir()
         config.options().copyDefaults(true)
         saveConfig()
+        setupEconomy()
+        tm = (Bukkit.getServer().pluginManager.getPlugin("TokenManager") as TokenManager)
         getCommand("staffchat")?.setExecutor(staffchat)
         getCommand("admin")?.setExecutor(admin)
         getCommand("udrzba")?.setExecutor(udrzba)
@@ -51,6 +55,19 @@ class Main : JavaPlugin() {
         Bukkit.getPluginManager().registerEvents(Sumo(), this)
         n = hotbarSuradnice().startBucketSuradniceRunnable()
         MobTrapka.start()
+        Apier.startApiServerInterface()
+    }
+
+    private fun setupEconomy(): Boolean {
+        if (server.pluginManager.getPlugin("Vault") == null) {
+            return false
+        }
+        val rsp = server.servicesManager.getRegistration(Economy::class.java) ?: return false
+        econ = rsp.provider
+        return econ != null
+    }
+    public fun getEconomy(): Economy? {
+        return econ
     }
 
     override fun onDisable() {

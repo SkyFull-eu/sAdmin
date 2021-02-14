@@ -3,7 +3,7 @@ version: ${project.version}
 main: me.GGGEDR.sAdmin.Main
 api-version: 1.16
 authors: [GGGEDR]
-depend: [PlaceholderAPI]
+depend: [PlaceholderAPI, Vault, TokenManager]
 commands:
   staffchat:
   admin:
